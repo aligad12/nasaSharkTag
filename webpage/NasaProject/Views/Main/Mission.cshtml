@@ -1,0 +1,162 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Mission</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/all.min.css">
+    <link rel="stylesheet" href="~/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/css/bondi.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+          rel="stylesheet">
+
+    <style>
+        body,
+        html {
+            height: 100%;
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .content-container {
+            background-color: rgba(0, 0, 0, 0.6);
+            /* Semi-transparent overlay */
+            padding: 30px;
+            border-radius: 15px;
+            color: #fff;
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-top: 30px;
+            margin-bottom: 20px;
+            color: #00cbB0;
+        }
+
+        .section-text {
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .data-source {
+            font-size: 0.9rem;
+            color: #a0e0d8;
+            margin-top: 20px;
+        }
+
+        .data-source a {
+            color: #fff;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg  sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="~/imgs/TeamLogo2.jpg" width="87px" height="44px" class="img-fluid"
+                     alt="">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main"
+                    aria-controls="main" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="main">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active p-2 p-lg-3" aria-current="page" href="~/home">Home</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link p-2 p-lg-3" href="~/overview">Tales</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link p-2 p-lg-3" href="~/vision">Vision</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link p-2 p-lg-3" href="~/mission">Mission</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link p-2 p-lg-3" href="~/aboutus">About Us</a>
+                    </li>
+
+
+                </ul>
+
+                <div class="search pe-3 ps-3 d-none d-lg-block ">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+
+
+
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mission & Motive Content -->
+    <div class="back-image-tales py-5">
+        <div class="container content-container">
+            <h1 class="section-title">Mission & Motive</h1>
+
+            <p class="section-text">
+                We are driven by a simple, undeniable truth: the ocean is dying in plain sight, and we refuse to stand
+                by and watch. Our motive is born from the devastating reality of the numbers. In the last 50 years
+                alone, the global population of oceanic sharks and rays has plummeted by a catastrophic 71%, a direct
+                result of an 18-fold increase in fishing pressure since 1970 (Pacoureau et al., 2021). Annually, an
+                estimated 80 million sharks are killed to supply the voracious international fin trade, a number that
+                remains tragically unchecked (Cardeñosa et al., 2023).
+            </p>
+
+            <p class="section-text">
+                This isn't just a tragedy; it's a systemic failure. We are allowing the guardians of our ocean to be
+                annihilated because our methods of protection are outdated, blind, and fundamentally broken.
+            </p>
+
+            <p class="section-text">
+                Our mission is to close this critical gap between ignorance and action. We build the tools to make the
+                invisible, visible.
+            </p>
+
+            <p class="section-text">
+                We achieve this by fusing NASA's orbital perspective with our pioneering smart-tag technology. Project
+                Sentinel is not just a platform; it is our answer to the crisis. It is the instrument that provides the
+                real-time, predictive data needed to empower scientists, guide policy, and transform a failing, reactive
+                conservation effort into a proactive, data-driven science. Our motive is to stop the decline. Our
+                mission is to provide the light needed to find the way.
+            </p>
+
+            <div class="data-source">
+                <p>Data Sources:</p>
+                <p>
+                    Cardeñosa, D., Shea, O., Feldheim, K., Heithaus, M. R., & Chapman, D. D. (2023). CITES listing of
+                    sharks and rays has had limited impact on their international trade. Science, 379(6633), 704-709. <a href="https://www.science.org/doi/10.1126/science.adf6423" target="_blank">Link</a>
+                </p>
+                <p>
+                    Pacoureau, N., Rigby, C. L., Kyne, P. M., Finucci, B., Jabado, R. W., ... & Dulvy, N. K. (2021). Half
+                    a century of global decline in oceanic sharks and rays. Nature, 589(7843), 567–571. <a href="https://www.nature.com/articles/s41586-020-03173-9" target="_blank">Link</a>
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
