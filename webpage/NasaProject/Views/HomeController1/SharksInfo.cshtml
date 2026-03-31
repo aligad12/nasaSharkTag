@@ -1,0 +1,234 @@
+﻿@model Shark.InfraStructure.Models.SharkEntity
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/7.0.5/signalr.min.js"></script>
+<script>
+    const connection = new signalR.HubConnectionBuilder()
+        .withUrl("/locationHub")
+        .build();
+
+    connection.on("ReceiveShark", function (data) {
+        document.getElementById("longitude").innerText = data.longitude;
+        document.getElementById("latitude").innerText = data.latitude;
+        document.getElementById("temperature").innerText = data.temperatue;
+        document.getElementById("pressure").innerText = data.depth;
+        document.getElementById("eating").innerText = data.eatingProbability;
+        document.getElementById("Id").innerText = data.id;
+        document.getElementById("Time").innerText = data.time;
+
+
+    });
+
+    connection.start().catch(err => console.error(err));
+</script>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Track Shark</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/all.min.css">
+    <link rel="stylesheet" href="~/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/css/bondi.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+          rel="stylesheet">
+
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
+    <style>
+        /* Map Style */
+        #map {
+            height: 600px;
+            border: 2px solid #007bff;
+            border-radius: 8px;
+            position: relative;
+        }
+
+        /* Circle button style */
+        .circle-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #007bff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            position: absolute;
+            top: 80px;
+            right: 20px;
+            z-index: 1000;
+            transition: transform 0.2s;
+        }
+
+            .circle-btn:hover {
+                transform: scale(1.2);
+            }
+
+        /* Tooltip data */
+        .tooltip-data {
+            display: none;
+            position: absolute;
+            top: -120%;
+            right: 0;
+            background-color: rgba(0, 0, 0, 0.85);
+            color: #fff;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 14px;
+            white-space: nowrap;
+        }
+
+        .circle-btn:hover .tooltip-data {
+            display: block;
+        }
+
+        /* Navbar z-index */
+        .navbar {
+            z-index: 999;
+            position: sticky;
+            top: 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+
+    <nav class="navbar navbar-expand-lg  sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="~/imgs/TeamLogo2.jpg" width="87px" height="44px" class="img-fluid"
+                     alt="">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main"
+                    aria-controls="main" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="main">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active p-2 p-lg-3" aria-current="page" href="~/home">Home</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link p-2 p-lg-3" href="~/overview">Tales</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link p-2 p-lg-3" href="~/vision">Vision</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link p-2 p-lg-3" href="~/mission">Mission</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link p-2 p-lg-3" href="~/aboutus">About Us</a>
+                    </li>
+
+
+                </ul>
+
+                <div class="search pe-3 ps-3 d-none d-lg-block ">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+
+
+
+            </div>
+        </div>
+    </nav>
+    <!-- Container -->
+    <div class="back-blue w-100">
+
+        <div class="container w-100 p-5 back-blue" style="margin-top: px;">
+            <!-- Form -->
+            <form action="home/sharks">
+                <div class="row g-2 mb-3">
+                    <div class="col-md-6">
+                        <input type="number" name="Id" step="any" value="1" id="Id" class="form-control"
+                               placeholder="Please Enter Shark ID">
+                    </div>
+                </div>
+                <button id="showBtn" type="submit" class="btn btn-primary mb-3">Show on Map</button>
+            </form>
+
+            <!-- Hidden Latitude & Longitude Inputs -->
+            <div class="col-md-6">
+                <input type="number" step="any" value="@Model.Latitude" id="latitude" hidden class="form-control"
+                       placeholder="Please Enter Shark ID">
+            </div>
+            <div class="col-md-6">
+                <input type="number" step="any" value="@Model.Longitude" hidden id="longitude" class="form-control"
+                       placeholder="Longitude (-180 to 180)">
+            </div>
+
+            <!-- Map Container -->
+            <div id="map">
+                <!-- Circle Button fo2 el map -->
+                <div class="circle-btn">
+                    <span class="dark-blue">Data</span>
+                    <div class="tooltip-data">
+                        Depth: 10m<br>
+                        Temperature: @Model.Temperatue°C<br>
+                        Longitude: @Model.Longitude<br>
+                        Latitude: @Model.Latitude<br>
+                        Updated Time: @Model.Time.ToString()
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Initialize map
+        var map = L.map('map').setView([20, 0], 2); // center and zoom level
+
+        // Add OpenStreetMap tiles
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '© OpenStreetMap'
+        }).addTo(map);
+
+        // Marker (hidden initially)
+        var marker = L.marker([0, 0]).addTo(map).bindPopup("Marker").openPopup();
+        marker.remove();
+
+        document.getElementById('showBtn').addEventListener('click', function (e) {
+            e.preventDefault(); // prevent form submission
+            const lat = parseFloat(document.getElementById('latitude').value);
+            const lng = parseFloat(document.getElementById('longitude').value);
+            const Id = parseFloat(document.getElementById('Id').value);
+
+            if (Id <= 0) {
+                alert("Please enter valid Shark ID!");
+                return;
+            }
+
+            // Set marker
+            marker.setLatLng([lat, lng]).addTo(map).bindPopup(`Lat: ${lat}, Lng: ${lng}`).openPopup();
+
+            // Center map on marker
+            map.setView([lat, lng], 4); // zoom in
+        });
+    </script>
+</body>
+
+</html>

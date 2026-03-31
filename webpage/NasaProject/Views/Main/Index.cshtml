@@ -1,0 +1,93 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+
+    <link rel="stylesheet" href="~/css/all.min.css">
+    <link rel="stylesheet" href="~/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/css/bondi.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+          rel="stylesheet">
+
+
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg  sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="~/imgs/TeamLogo2.jpg" width="87px" height="44px" class="img-fluid"
+                     alt="">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main"
+                    aria-controls="main" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="main">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active p-2 p-lg-3" aria-current="page" href="~/home">Home</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link p-2 p-lg-3" href="~/overview">Tales</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link p-2 p-lg-3" href="~/vision">Vision</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link p-2 p-lg-3" href="~/mission">Mission</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link p-2 p-lg-3" href="~/aboutus">About Us</a>
+                    </li>
+
+
+                </ul>
+
+                <div class="search pe-3 ps-3 d-none d-lg-block ">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+
+
+
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="back-image-home landing d-flex align-items-center" style="min-height: calc(100vh - 70px);">
+        <div class="container text-center text-light  p-5">
+            <h1 class="display-4 fw-bold">Project Sentinel</h1>
+            <p class="fs-4 mt-3 mb-3">Making the Guardians Visible</p>
+            <p class="fs-5 mb-5">
+                “You cannot protect what you cannot see; you should not fear what you do not know. It's
+                time to open our eyes.”
+            </p>
+
+            <div class="d-flex justify-content-center gap-4">
+                <a href="~/home/quiz" class="btn back-green rounded-pill main-btn text-center pt-4 pb-4 ps-5 pe-5">
+                    Take
+                    Quiz
+                </a>
+                <a href="~/home/sharks"
+                   class="btn back-yellow green-color rounded-pill main-btn text-center pt-4 pb-4 ps-5 pe-5">
+                    Track a
+                    Shark
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/all.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

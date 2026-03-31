@@ -1,0 +1,123 @@
+﻿@model List<NasaTest.Models.Question>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Answers</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/all.min.css">
+    <link rel="stylesheet" href="~/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/css/bondi.css">
+
+    <style>
+        .quiz-container {
+            border: 2px solid #007bff;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 30px;
+            margin-bottom: 50px;
+        }
+
+        .quiz-question {
+            font-weight: bold;
+            color: #dee1e3;
+            margin-bottom: 10px;
+        }
+
+        .correct-answer {
+            background-color: #28a745;
+            /* green */
+            color: white;
+            padding: 8px 12px;
+            border-radius: 5px;
+            display: inline-block;
+            margin-bottom: 5px;
+        }
+
+        .explanation {
+            background-color: #17a2b8;
+            /* light blue */
+            color: white;
+            padding: 8px 12px;
+            border-radius: 5px;
+            display: block;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg  sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="~/imgs/TeamLogo2.jpg" width="87px" height="44px" class="img-fluid"
+                     alt="">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main"
+                    aria-controls="main" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="main">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active p-2 p-lg-3" aria-current="page" href="~/home">Home</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link p-2 p-lg-3" href="~/overview">Tales</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link p-2 p-lg-3" href="~/vision">Vision</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link p-2 p-lg-3" href="~/mission">Mission</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link p-2 p-lg-3" href="~/aboutus">About Us</a>
+                    </li>
+
+
+                </ul>
+
+                <div class="search pe-3 ps-3 d-none d-lg-block ">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+
+
+
+            </div>
+        </div>
+    </nav>
+    <!-- Quiz Answers Container -->
+    <div class="back-blue pt-5 pb-5">
+        <div class="container">
+            <div class="quiz-container back-blue text-white-50">
+                <h2 class="text-center mb-4">Quiz Answers</h2>
+
+                @for (int i = 0; i < Model.Count; i++)
+                {
+                    <div class="mb-3">
+                        <div class="quiz-question">@($"{Model[i].question}")</div>
+                        <div class="correct-answer">Correct Answer: @Model[i].Answer</div>
+                        <div class="explanation">Explanation: @Model[i].Explanation</div>
+                    </div>
+                    <hr />
+                }
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
